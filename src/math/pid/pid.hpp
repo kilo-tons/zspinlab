@@ -60,7 +60,7 @@ inline float PID::run(float sp, float pv, float ffwd)
 
     p_term  = kP*error;
     i_term  = (kI == 0.0f ? 0.0f : CLAMP(prev_i_term + kI * error, outMin, outMax));     // Only bother when kI is used
-    d_term  = (kI == 0.0f ? 0.0f : filter.run(kD * error));     // Only bother when kD is used
+    d_term  = (kD == 0.0f ? 0.0f : filter.run(kD * error));     // Only bother when kD is used
 
     // Store previous state
     prev_i_term = i_term;
