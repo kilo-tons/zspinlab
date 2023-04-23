@@ -14,7 +14,7 @@ void CurrentController::set_Id_pid_params(float kP, float kI, float kD, float mi
 {
     PID_id.set_kp(kP);
     PID_id.set_ki(kI);
-    PID_id.set_kp(kD);
+    PID_id.set_kd(kD);
     PID_id.set_outMax(max);
     PID_id.set_outMin(min);
 }
@@ -46,7 +46,7 @@ void CurrentController::set_Iq_pid_params(float kP, float kI, float kD, float mi
 {
     PID_iq.set_kp(kP);
     PID_iq.set_ki(kI);
-    PID_iq.set_kp(kD);
+    PID_iq.set_kd(kD);
     PID_iq.set_outMax(max);
     PID_iq.set_outMin(min);
 }
