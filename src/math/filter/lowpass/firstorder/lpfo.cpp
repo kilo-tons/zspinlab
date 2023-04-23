@@ -1,5 +1,7 @@
 #include "lpfo.hpp"
 
+namespace zspinlab::math::modules {
+
 /** 
  * @brief Constructor, set initial denominator and numerator coefficients
  * @param[in] a1 The denominator filter coefficient value for z^(-1)
@@ -29,3 +31,5 @@ void LowPassFirstOrder::set_initial_condition(float x1, float y1)
     this->x1 = x1;
     this->y1 = y1;
 }
+
+} // namespace zspinlab::math::modules

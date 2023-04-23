@@ -1,15 +1,14 @@
 #pragma once
 
 #include <zephyr/sys/util.h>
-#include "../filter/lowpass/firstorder/lpfo.hpp"
+#include "math/math_core.hpp"
+
+namespace zspinlab::math::modules {
 
 // Create a generic PID controller
 class PID {
 public:
-    PID(float kP, float kI, float kD, float outMin, float outMax);
-    
-    // Filter unit
-    LowPassFirstOrder filter{0.0f, 1.0f, 0.0f}; // Default to non-filtering mode
+    PID(float kP = 0.0f, float kI = 0.0f, float kD = 0.0f, float outMin = 0.0f, float outMax = 0.0f);
 
     void set_lpf_parameter(float a1, float b0, float b1, float x1, float y1);
 
@@ -31,6 +30,9 @@ public:
     void set_outMax(float outMax) { this->outMax = outMax; }
 
 private:
+    // Filter unit
+    LowPassFirstOrder filter{0.0f, 1.0f, 0.0f}; // Default to non-filtering mode
+    
     float kP, kI, kD;
     float outMin, outMax;
 
@@ -58,7 +60,7 @@ inline float PID::run(float sp, float pv, float ffwd)
 
     p_term  = kP*error;
     i_term  = (kI == 0.0f ? 0.0f : CLAMP(prev_i_term + kI * error, outMin, outMax));     // Only bother when kI is used
-    d_term  = filter.run(kD * error);
+    d_term  = (kI == 0.0f ? 0.0f : filter.run(kD * error));     // Only bother when kD is used
 
     // Store previous state
     prev_i_term = i_term;
@@ -81,3 +83,5 @@ inline float PID::reset_state(void)
     prev_pv = 0;
     prev_ffwd = 0;
 }
+
+} // zspinlab::math::modules

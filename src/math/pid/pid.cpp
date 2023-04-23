@@ -1,5 +1,7 @@
 #include "pid.hpp"
 
+namespace zspinlab::math::modules {
+
 /**
  * @brief Initialize the PID controller general parameters
  * @param[in] kP        Proportional gain
@@ -35,3 +37,5 @@ void PID::set_lpf_parameter(float a1, float b0, float b1, float x1, float y1)
     filter.set_denominator_coefficient_b1(b1);
     filter.set_initial_condition(x1, y1);
 }
+
+} // namespace zspinlab::math::modules

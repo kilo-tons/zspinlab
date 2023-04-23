@@ -15,7 +15,7 @@ namespace zspinlab::math::type {
 
 } // namespace zspinlab::math::type
 
-// This contain the basic math operations that could be performed by specialized instructions or hardwares
+// Namespaces for basic math operations that could be performed by specialized instructions or hardwares
 namespace zspinlab::math::basic {
 
 inline void fcosf(float rad, float &out) 
@@ -66,7 +66,7 @@ inline void fsincosf(const float angle_deg, float &sin_out, float &cos_out) {
 } // namespace zspinlab::math::basic
 
 
-// This contains simple motor control algorithm functions, can be used immediately
+// Namespace for simple, "direct" motor control algorithm functions
 namespace zspinlab::math::function {
 
 /**
@@ -139,7 +139,6 @@ inline void park_transform(float i_alpha,
                         float &id,
                         float &iq)
 {
-    // Basic implementation
     id = i_alpha * cos_theta + i_beta * sin_theta;
     iq = -i_alpha * sin_theta + i_beta * cos_theta;
 }
@@ -169,7 +168,7 @@ inline void inverse_park_transform(float id,
 } // namespace zspinlab::math::function
 
 
-// This contains motor control algorithm groups complex enough to be defined in a class
+// Namespace for complex motor control algorithm classes
 namespace zspinlab::math::modules {
     class LowPassFirstOrder;
     class PID;

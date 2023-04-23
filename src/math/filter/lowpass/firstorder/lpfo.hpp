@@ -1,5 +1,7 @@
 #pragma once
 
+namespace zspinlab::math::modules {
+
 // Create a simple first-order low-pass filter
 class LowPassFirstOrder {
 public:
@@ -50,3 +52,5 @@ inline float LowPassFirstOrder::run(float input) {
 
     return y0;
 }
+
+} // namespace zspinlab::math::modules
