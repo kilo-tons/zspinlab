@@ -6,6 +6,7 @@
 #include "math_const.hpp"
 #include "pid/pid.hpp"
 #include "filter/lowpass/fo/lpfo.hpp"
+#include "filter/lowpass/so/lpso.hpp"
 
 #if defined(CONFIG_CMSIS_DSP) && defined(CONFIG_ARM)
 #include <arm_math.h>
@@ -86,7 +87,7 @@ namespace zspinlab::math::basic
     {
         return (T(0) < x) - (x < T(0));
     }
-    
+
 } // namespace zspinlab::math::basic
 
 // Namespace for simple, "direct" motor control algorithm that is wrapped in a single function
@@ -196,5 +197,6 @@ namespace zspinlab::math::function
 namespace zspinlab::math::modules
 {
     class LowPassFirstOrder;
+    class LowPassSecondOrder;
     class PID;
 } // namespace zspinlab::math::modules
