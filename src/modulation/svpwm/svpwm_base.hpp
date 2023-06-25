@@ -39,7 +39,7 @@ protected:
     // Phase duty cycle 
     float dA, dB, dC;
 
-    // Inverse Clark reference voltage vectors (alpha and beta), should be normalized to [-1, 1]
+    // Reference alpha and beta voltage vectors, should be normalized to [-1, 1]
     float va, vb;
 
     // Flag to indicate if we want phase over-modulation to increase the output voltage to motor
@@ -74,8 +74,7 @@ inline void SVPWM_Base<Derived>::limit_vref_ab(void)
         return;
     }
 
-    float mod;
-    zspinlab::math::basic::fsqrtf(va*va + vb*vb, mod);
+    float mod = zspinlab::math::basic::fsqrtf(va*va + vb*vb, mod);
 
     if (mod > MATH_SQRT_3_BY_2) {
         va   = va / mod * MATH_SQRT_3_BY_2;

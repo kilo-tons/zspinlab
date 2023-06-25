@@ -45,9 +45,9 @@ inline void SVPWM_ODTV_1N::run(void)
 	c = a - b;
 
 	// Pre-compute everything possible
-	abs_a = fabsf(a);
-	abs_b = fasbf(b);
-	abs_c = fasbf(c);
+	abs_a = zspinlab::math::basic::ffabsf(a);
+	abs_b = zspinlab::math::basic::ffabsf(b);
+	abs_c = zspinlab::math::basic::ffabsf(c);
 
 	half_a = a * 0.5f;
 	half_b = b * 0.5f;
