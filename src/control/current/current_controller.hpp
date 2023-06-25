@@ -1,6 +1,5 @@
 #pragma once
 
-#include <zephyr/sys/util.h>
 #include "math/math_core.hpp"
 
 namespace zspinlab::controller {
@@ -25,7 +24,7 @@ public:
     // Get Id reference current
     float get_Id_ref(void) { return Id_ref; };
 
-    void run(float Id, float Iq, float theta);
+    void run(float Id, float Iq, float sin_theta, float cos_theta);
     
     // Obtain the calculated alpha voltage vector
     float get_va(void) { return v_a; }
@@ -44,11 +43,12 @@ private:
  * @brief Run the current controller module
  * @param[in] Id Input Iq current
  * @param[in] Iq Input Iq current
- * @param[in] theta Input electrical angle in degree
+ * @param[in] sin_theta Input Sine value of electrical angle
+ * @param[in] cos_theta Input Cosine value of electrical angle
  * 
  * @return None
  **/
-inline void CurrentController::run(float Id, float Iq, float theta)
+inline void CurrentController::run(float Id, float Iq, float sin_theta, float cos_theta)
 {
     float v_q, v_d;
     float sin_theta, cos_theta;
@@ -56,9 +56,6 @@ inline void CurrentController::run(float Id, float Iq, float theta)
     // Currently not implementing feed-forward variable
     v_q = PID_iq.run(Iq_ref, Iq, 0.0f);
     v_d = PID_id.run(Id_ref, Id, 0.0f);
-
-    // Get theta sin-cos value
-    zspinlab::math::basic::fsincosf(theta, sin_theta, cos_theta);
 
     // Get alpha and beta voltage
     zspinlab::math::function::inverse_park_transform(v_d, v_q, sin_theta, cos_theta, v_a, v_b);
