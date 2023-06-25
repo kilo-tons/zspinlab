@@ -28,9 +28,9 @@ namespace zspinlab::math::modules
         void get_denominator_coefficient_a1(float a1) { this->a1 = a1; }
 
         // Get the filter denominator coefficient for z^(-2)
-        float get_denominator_coefficient_a1(void) { return a2; }
+        float get_denominator_coefficient_a2(void) { return a2; }
         // Set the filter denominator coefficient for z^(-2)
-        void get_denominator_coefficient_a1(float a2) { this->a2 = a2; }
+        void get_denominator_coefficient_a2(float a2) { this->a2 = a2; }
 
         // Get the filter numerator coefficient for z^0
         float get_numerator_coefficient_b0(void) { return b0; }
