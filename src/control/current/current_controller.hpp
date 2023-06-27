@@ -8,11 +8,8 @@ class CurrentController {
 public:
     CurrentController() {};
 
-    void set_Id_pid_params(float kP, float kI, float kD, float min, float max);     
-    void set_Id_lpfilter_coeffs(float a1, float b0, float b1, float x1, float y1);  // Optional
-
-    void set_Iq_pid_params(float kP, float kI, float kD, float min, float max);
-    void set_Iq_lpfilter_coeffs(float a1, float b0, float b1, float x1, float y1);  // Optional
+    void set_Id_pi_params(float kP, float kI, float min, float max);     
+    void set_Iq_pi_params(float kP, float kI, float min, float max);
 
     // Set Iq reference current
     void set_Iq_ref(float Iq_ref) { this->Iq_ref = Iq_ref; }
@@ -32,8 +29,8 @@ public:
     float get_vb(void) { return v_b; }
 
 private:
-    // PID units
-    zspinlab::math::modules::PID PID_id, PID_iq;
+    // PI units
+    zspinlab::math::modules::PI PI_id, PI_iq;
 
     float Iq_ref, Id_ref;
     float v_a, v_b;
@@ -54,8 +51,8 @@ inline void CurrentController::run(float Id, float Iq, float sin_theta, float co
     float sin_theta, cos_theta;
 
     // Currently not implementing feed-forward variable
-    v_q = PID_iq.run(Iq_ref, Iq, 0.0f);
-    v_d = PID_id.run(Id_ref, Id, 0.0f);
+    v_q = PI_iq.run(Iq_ref, Iq, 0.0f);
+    v_d = PI_id.run(Id_ref, Id, 0.0f);
 
     // Get alpha and beta voltage
     zspinlab::math::function::inverse_park_transform(v_d, v_q, sin_theta, cos_theta, v_a, v_b);

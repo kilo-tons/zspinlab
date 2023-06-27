@@ -65,7 +65,7 @@ namespace zspinlab::math::modules
     };
 
     /**
-     * @brief Run the filter (y[n] = b0*x[n] + b1*x[n-1] - a1*y[n-1])
+     * @brief Run the filter (y[n] = b0*x[n] + b1*x[n-1] + b2*x[n-2] - a1*y[n-1] - a2*y[n-2])
      * @param[in] input Input raw value x[n]
      *
      * @return Output filter value
