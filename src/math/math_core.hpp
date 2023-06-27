@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "math_const.hpp"
+#include "pi/pi.hpp"
 #include "pid/pid.hpp"
 #include "filter/lowpass/fo/lpfo.hpp"
 #include "filter/lowpass/so/lpso.hpp"
@@ -198,5 +199,6 @@ namespace zspinlab::math::modules
 {
     class LowPassFirstOrder;
     class LowPassSecondOrder;
+    class PI;
     class PID;
 } // namespace zspinlab::math::modules
